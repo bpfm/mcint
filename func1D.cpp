@@ -1,4 +1,4 @@
-// func1D .cpp
+// func1D.cpp
 #include "func1D.h"
 
 float func1D(float x){
