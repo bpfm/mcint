@@ -11,13 +11,14 @@ int integrate1D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
 
   srand(123456);      // initialise random seed
 
+  #pragma omp parallel
   for(int i=0; i<nRand; i++){
     fRandX = lowerLimitX + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitX - lowerLimitX)));
     fRandY = lowerLimitY + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitY - lowerLimitY)));
     if(fRandY<=func1D(fRandX)){
       nAccept++;
     }
-    printf("%i\t%i\n",i ,nAccept);
+    if(i % 100 == 0){printf("%i\t%i\n",i ,nAccept);}
   }
   return nAccept;
 }

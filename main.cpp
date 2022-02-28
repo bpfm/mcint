@@ -3,7 +3,7 @@
 
 int main(){
 
-  const int nRand = 10000;        // number of random integers to draws
+  const int nRand = 10000000;        // number of random integers to draws
   const float lowerLimitX = 0.0;  // lower limit
   const float upperLimitX = 1.0;  // upper integral
   const float lowerLimitY = 0.0;  // lower limit
