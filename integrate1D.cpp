@@ -18,7 +18,7 @@ int integrate1D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
     if(fRandY<=func1D(fRandX)){
       nAccept++;
     }
-    if(i % 100 == 0){printf("%i\t%i\n",i ,nAccept);}
+    if(i % (nRand/100) == 0){printf("%i\t%f\n",i,area*float(nAccept)/float(i));}
   }
   return nAccept;
 }
