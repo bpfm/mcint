@@ -16,10 +16,10 @@ int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
     fRandX = lowerLimitX + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitX - lowerLimitX)));
     fRandY = lowerLimitY + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitY - lowerLimitY)));
     fRandZ = lowerLimitZ + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitZ - lowerLimitZ)));
-    if(fRandZ <= func2D(fRandX)){
+    if(fRandZ<=func2D(fRandX,fRandY)){
       nAccept++;
     }
-    if(i % (nRand/100) == 0){printf("%i\t%f\n",i,vol*float(nAccept)/float(i));}
+    if(i % (nRand/100) == 0){printf("%i\t%f\t%f\n",i,vol,vol*float(nAccept)/float(i));}
   }
   return nAccept;
 }

@@ -4,25 +4,28 @@
 
 int main(){
 
-  const int nRand = 100000;        // number of random integers to draws
+  const int nRand = 1000000;        // number of random integers to draws
   const float lowerLimitX = 0.0;  // lower limit
   const float upperLimitX = 1.0;  // upper integral
   const float lowerLimitY = 0.0;  // lower limit
   const float upperLimitY = 1.0;  // upper integral
   const float lowerLimitZ = 0.0;  // lower limit
-  const float upperLimitZ = 1.0;  // upper integral
+  const float upperLimitZ = 2.0;  // upper integral
 
   float area = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
+  float vol  = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
 
-  int nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
+  int nAccept;
 
-  printf("*********************************\n");
-  printf("%f\n", float((nAccept)/float(nRand))*area);
+  // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
+  //
+  // printf("*********************************\n");
+  // printf("%f\n", float((nAccept)/float(nRand))*area);
 
   nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ);
 
-  // printf("*********************************\n");
-  // printf("%f\n", float((nAccept)/float(nRand))*area);
+  printf("*********************************\n");
+  printf("%f\n", float((nAccept)/float(nRand))*vol);
 
   return 0;
 }
