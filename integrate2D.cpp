@@ -5,7 +5,7 @@
 #include "integrate2D.h"
 
 int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ){
-  float fRandX,fRandY,fRandZ;           // random integer
+  float fRandX,fRandY,fRandZ;           // random samples
   float vol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
   int nAccept = 0;
 

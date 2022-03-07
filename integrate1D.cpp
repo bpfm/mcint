@@ -5,7 +5,7 @@
 #include "integrate1D.h"
 
 int integrate1D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY){
-  float fRandX,fRandY;           // random integer
+  float fRandX,fRandY;           // random samples
   float area = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
   int nAccept = 0;
 
