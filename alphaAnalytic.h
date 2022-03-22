@@ -1,3 +1,3 @@
-// analyticAlpha.h
+// alphaAnalytic.h
 
-float analyticAlpha(float x, float y, float z);
+float alphaAnalytic(float x, float y, float z);

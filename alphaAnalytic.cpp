@@ -1,5 +1,6 @@
 // analyticAlpha.cpp
 #include <stdlib.h>
+#include "analyticAlpha.h"
 
 float analyticAlpha(float xx, float yy, float zz){
   float gg = 1.0;
