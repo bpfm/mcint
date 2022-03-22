@@ -4,9 +4,6 @@
 // #include "alphaAnalytic.h"
 
 float alphaAnalytic(float xx, float yy, float zz){
-  float xp = 0.1;
-  float yp = 0.0;
-  float zp = -0.1;
   float gg = 1.0;
   float mp = 1.0;
   float cs = 1.0;

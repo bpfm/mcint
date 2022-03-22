@@ -6,8 +6,10 @@
 #include "integrate2D.h"
 #include "integrate3D.h"
 
-#include "alphaAnalytic.h"
-#include "perturberExtended.h"
+// #include "alphaAnalytic.h"
+// #include "perturberExtended.h"
+#include "alphaExtended.h"
+
 
 int main(){
 
@@ -41,7 +43,7 @@ int main(){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
-  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,perturberExtended);
+  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,alphaExtended);
 
   printf("*********************************\n");
   printf("%f\n", float((nAccept)/float(nRand))*fourVol);
