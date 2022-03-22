@@ -1,7 +1,7 @@
 // analyticAlpha.cpp
 #include <stdlib.h>
 #include <math.h>
-#include "alphaAnalytic.h"
+// #include "alphaAnalytic.h"
 
 float alphaAnalytic(float xx, float yy, float zz){
   float gg = 1.0;
