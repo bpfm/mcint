@@ -4,6 +4,9 @@
 // #include "alphaAnalytic.h"
 
 float alphaAnalytic(float xx, float yy, float zz){
+  float xp = 0.1;
+  float yp = 0.0;
+  float zp = -0.1
   float gg = 1.0;
   float mp = 1.0;
   float cs = 1.0;
@@ -22,6 +25,10 @@ float alphaAnalytic(float xx, float yy, float zz){
   float ss2 = ss*ss;
   float preFactor = ((gg*mp)/cs2)/sqrt(ss2 + rad2*(1.0 - mach2));
   float alpha;
+
+  xx = xp - xx;
+  yy = yp - yy;
+  zz = zp - zz;
 
   if(rad2*zz2 < cs2*tt2){
     alpha = 1.0*preFactor;

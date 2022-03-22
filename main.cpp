@@ -6,17 +6,20 @@
 #include "integrate2D.h"
 #include "integrate3D.h"
 
+#include "alphaAnalytic.h"
+#include "perturberExtended.h"
+
 int main(){
 
   const int nRand = 1e8;        // number of random integers to draws
-  const float lowerLimitX = 0.0;  // lower limit
+  const float lowerLimitX = -1.0;  // lower limit
   const float upperLimitX = 1.0;  // upper limt
-  const float lowerLimitY = 0.0;  // lower limit
+  const float lowerLimitY = -1.0;  // lower limit
   const float upperLimitY = 1.0;  // upper limit
-  const float lowerLimitZ = 0.0;  // lower limit
+  const float lowerLimitZ = -1.0;  // lower limit
   const float upperLimitZ = 1.0;  // upper limit
   const float lowerLimitRho = 0.0;  // lower limit
-  const float upperLimitRho = 3.0;  // upper limit
+  const float upperLimitRho = 100.0;  // upper limit
 
   float area    = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
   float vol     = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
@@ -33,7 +36,12 @@ int main(){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*vol);
 
-  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
+  // nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
+  //
+  // printf("*********************************\n");
+  // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
+
+  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,perturberExtended);
 
   printf("*********************************\n");
   printf("%f\n", float((nAccept)/float(nRand))*fourVol);
