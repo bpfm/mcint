@@ -1,4 +1,7 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
+#include "func1D.h"
+#include "func2D.h"
+#include "func3D.h"
 #include "integrate1D.h"
 #include "integrate2D.h"
 #include "integrate3D.h"
@@ -20,17 +23,17 @@ int main(){
   float fourVol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ)*(upperLimitRho - lowerLimitRho);
   int nAccept;
 
-  // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
+  // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
   //
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*area);
 
-  // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ);
+  // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
   //
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*vol);
 
-  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
 
   printf("*********************************\n");
   printf("%f\n", float((nAccept)/float(nRand))*fourVol);

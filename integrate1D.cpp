@@ -1,10 +1,9 @@
 // integrate1D.cpp
 #include <stdio.h>
 #include <stdlib.h>     /* srand, rand */
-#include "func1D.h"
 #include "integrate1D.h"
 
-int integrate1D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY){
+int integrate1D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float (*func1D)(float)){
   float fRandX,fRandY;           // random samples
   float area = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
   int nAccept = 0;

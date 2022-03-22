@@ -1,10 +1,9 @@
 // integrate2D.cpp
 #include <stdio.h>
 #include <stdlib.h>     /* srand, rand */
-#include "func2D.h"
 #include "integrate2D.h"
 
-int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ){
+int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ, float (*func2D)(float,float)){
   float fRandX,fRandY,fRandZ;           // random samples
   float vol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
   int nAccept = 0;
