@@ -6,14 +6,11 @@
 #include "integrate2D.h"
 #include "integrate3D.h"
 
-// #include "alphaAnalytic.h"
-// #include "perturberExtended.h"
 #include "alphaExtended.h"
-
 
 int main(){
 
-  const int nRand = 1e8;        // number of random integers to draws
+  const int nRand = 1e9;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit
   const float upperLimitX = 1.0;  // upper limt
   const float lowerLimitY = -1.0;  // lower limit

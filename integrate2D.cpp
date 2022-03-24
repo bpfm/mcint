@@ -1,6 +1,7 @@
 // integrate2D.cpp
 #include <stdio.h>
 #include <stdlib.h>     /* srand, rand */
+#include <omp.h>
 
 int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ, float (*func2D)(float,float)){
   float fRandX,fRandY,fRandZ;           // random samples
