@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[]){
 
-  const int nRand = 1e9;        // number of random integers to draws
+  const int nRand = 1e8;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit
   const float upperLimitX = 1.0;  // upper limt
   const float lowerLimitY = -1.0;  // lower limit
@@ -46,10 +46,15 @@ int main(int argc, char *argv[]){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
-  nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+  float xp = 0.1, yp = 0.0,zp;
+  FILE * pFile;
+  pFile = fopen("zAlpha.txt","w");
 
-  printf("*********************************\n");
-  printf("%f\n", float((nAccept)/float(nRand))*fourVol);
+  for(int i; i<50; i++){
+    zp = (upperLimitZ - lowerLimitZ)*float(i)/float(50) + lowerLimitZ;
+    nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+    fprintf(pFile, "%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol);
+  }
 
   return 0;
 }
