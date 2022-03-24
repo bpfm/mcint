@@ -1,4 +1,4 @@
-// analyticAlpha.cpp
+// alphaAnalytic.cpp
 #include <stdlib.h>
 #include <math.h>
 
@@ -22,7 +22,7 @@ float alphaAnalytic(float xx, float yy, float zz){
   float preFactor = ((gg*mp)/cs2)/sqrt(ss2 + rad2*(1.0 - mach2));
   float alpha;
 
-  if(rad2*zz2 < cs2*tt2){
+  if(rad2 + zz2 < cs2*tt2){
     alpha = 1.0*preFactor;
   }else if((mach > 1.0) && (rad2 + zz2 > (cs2*tt2)) && (ss/rad < -1.0*sqrt(mach2 - 1.0)) && (zz > cs*tt/mach)){
     alpha = 2.0*preFactor;
