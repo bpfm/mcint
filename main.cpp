@@ -8,18 +8,19 @@
 #include "integrate3DAlpha.h"
 
 #include "alphaExtended.h"
+#include "alphaAnalytic.h"
 
 int main(int argc, char *argv[]){
 
-  const int nRand = 1e8;        // number of random integers to draws
+  const int nRand = 5e7;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit
   const float upperLimitX = 1.0;  // upper limt
   const float lowerLimitY = -1.0;  // lower limit
   const float upperLimitY = 1.0;  // upper limit
-  const float lowerLimitZ = -1.0;  // lower limit
-  const float upperLimitZ = 1.0;  // upper limit
+  const float lowerLimitZ = -0.75;  // lower limit
+  const float upperLimitZ = 1.25;  // upper limit
   const float lowerLimitRho = 0.0;  // lower limit
-  const float upperLimitRho = 100.0;  // upper limit
+  const float upperLimitRho = 50.0;  // upper limit
 
   float area    = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
   float vol     = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
@@ -46,14 +47,15 @@ int main(int argc, char *argv[]){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
-  float xp = 0.1, yp = 0.0,zp;
+  float xp = 0.0, yp = 0.0,zp;
   FILE * pFile;
   pFile = fopen("zAlpha.txt","w");
 
-  for(int i; i<50; i++){
-    zp = (upperLimitZ - lowerLimitZ)*float(i)/float(50) + lowerLimitZ;
+  for(int i=0; i<100; i++){
+    zp = (upperLimitZ - lowerLimitZ)*float(i)/float(100) + lowerLimitZ;
     nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
-    fprintf(pFile, "%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol);
+    printf("%f\t%i\t%f\t%f\n", zp, nRand, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp));
+    fprintf(pFile, "%f\t%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp));
   }
 
   return 0;
