@@ -6,7 +6,7 @@ float alphaAnalytic(float xx, float yy, float zz){
   float gg = 1.0;
   float mp = 1.0;
   float cs = 1.0;
-  float tt = 1.0;
+  float tt = 0.5;
   float tt2 = tt*tt;
   float cs2 = cs*cs;
   float xx2 = xx*xx;

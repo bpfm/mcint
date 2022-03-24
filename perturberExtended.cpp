@@ -9,9 +9,9 @@ float perturberExtended(float xx, float yy, float zz){
   float pi = 3.14159;
   float cs = 1.0;
   float mach = 1.3;
-  float tt = 1.0;
+  float tt = 0.5;
   float mp = 1.0;
-  float rs = 0.01;
+  float rs = 0.025;
   float rs2 = rs*rs;
   float rad2 = xx2 + yy2;
   float rad = sqrt(rad2);

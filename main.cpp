@@ -5,10 +5,11 @@
 #include "integrate1D.h"
 #include "integrate2D.h"
 #include "integrate3D.h"
+#include "integrate3DAlpha.h"
 
 #include "alphaExtended.h"
 
-int main(){
+int main(int argc, char *argv[]){
 
   const int nRand = 1e9;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit
@@ -40,7 +41,12 @@ int main(){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
-  nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,alphaExtended);
+  // nAccept = integrate3D(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,alphaExtended);
+  //
+  // printf("*********************************\n");
+  // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
+
+  nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
 
   printf("*********************************\n");
   printf("%f\n", float((nAccept)/float(nRand))*fourVol);
