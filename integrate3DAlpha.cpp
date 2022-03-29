@@ -14,10 +14,10 @@ int integrate3DAlpha(float xp, float yp, float zp,int nRand, float lowerLimitX, 
 
   #pragma omp parallel for
   for(int i=0; i<nRand; i++){
-    fRandX   = lowerLimitX   + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitX   - lowerLimitX)));
-    fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitY   - lowerLimitY)));
-    fRandZ   = lowerLimitZ   + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitZ   - lowerLimitZ)));
-    fRandRho = lowerLimitRho + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitRho - lowerLimitRho)));
+    fRandX   = lowerLimitX   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitX   - lowerLimitX)));
+    fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
+    fRandZ   = lowerLimitZ   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitZ   - lowerLimitZ)));
+    fRandRho = lowerLimitRho + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitRho - lowerLimitRho)));
     if(fRandRho <= alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ)){
       nAccept++;
     }

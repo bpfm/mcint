@@ -12,9 +12,9 @@ int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
 
   #pragma omp parallel for
   for(int i=0; i<nRand; i++){
-    fRandX = lowerLimitX + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitX - lowerLimitX)));
-    fRandY = lowerLimitY + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitY - lowerLimitY)));
-    fRandZ = lowerLimitZ + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(upperLimitZ - lowerLimitZ)));
+    fRandX = lowerLimitX + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitX - lowerLimitX)));
+    fRandY = lowerLimitY + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY - lowerLimitY)));
+    fRandZ = lowerLimitZ + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitZ - lowerLimitZ)));
     if(fRandZ<=func2D(fRandX,fRandY)){
       nAccept++;
     }
