@@ -9,6 +9,7 @@
 
 #include "alphaExtended.h"
 #include "alphaAnalytic.h"
+#include "perturberExtended.h"
 
 int main(int argc, char *argv[]){
 
@@ -17,10 +18,10 @@ int main(int argc, char *argv[]){
   const float upperLimitX = 1.0;  // upper limt
   const float lowerLimitY = -1.0;  // lower limit
   const float upperLimitY = 1.0;  // upper limit
-  const float lowerLimitZ = -0.75;  // lower limit
-  const float upperLimitZ = 1.25;  // upper limit
+  const float lowerLimitZ = -1.0;  // lower limit
+  const float upperLimitZ = 3.0;  // upper limit
   const float lowerLimitRho = 0.0;  // lower limit
-  const float upperLimitRho = 50.0;  // upper limit
+  const float upperLimitRho = 1000.0;  // upper limit
 
   float area    = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
   float vol     = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);
@@ -47,15 +48,19 @@ int main(int argc, char *argv[]){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
+  int nPoints = 99;
   float xp = 0.0, yp = 0.0,zp;
   FILE * pFile;
   pFile = fopen("zAlpha.txt","w");
 
-  for(int i=0; i<100; i++){
-    zp = (upperLimitZ - lowerLimitZ)*float(i)/float(100) + lowerLimitZ;
+  for(int i=0; i<nPoints; i++){
+    // zp = (upperLimitZ - lowerLimitZ)*float(i)/float(nPoints) + lowerLimitZ;
+    zp = (1.5 - (-0.5))*float(i)/float(nPoints) + (-0.5);
+    printf("%f\t%f\t%f\n",xp,yp,zp);
     nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
     printf("%f\t%i\t%f\t%f\n", zp, nRand, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp));
-    fprintf(pFile, "%f\t%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp));
+    printf("%f\t%f\t%f\n",xp,yp,zp);
+    fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
   }
 
   return 0;
