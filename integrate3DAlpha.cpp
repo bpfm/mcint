@@ -18,7 +18,7 @@ int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX,
     fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
     fRandZ   = lowerLimitZ   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitZ   - lowerLimitZ)));
     fRandRho = lowerLimitRho + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitRho - lowerLimitRho)));
-    if(fRandRho <= alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ)){
+    if(abs(fRandRho) <= abs(alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ))){
       nAccept++;
     }
     if(i % (nRand/10) == 0){printf("%f\t%i\t%f\n",zp,i,fourVol*float(nAccept)/float(i));}

@@ -56,10 +56,8 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     // zp = (upperLimitZ - lowerLimitZ)*float(i)/float(nPoints) + lowerLimitZ;
     zp = (1.5 - (-0.5))*float(i)/float(nPoints) + (-0.5);
-    printf("%f\t%f\t%f\n",xp,yp,zp);
     nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
     printf("%f\t%i\t%f\t%f\n", zp, nRand, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp));
-    printf("%f\t%f\t%f\n",xp,yp,zp);
     fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, float((nAccept)/float(nRand))*fourVol, alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
   }
 
