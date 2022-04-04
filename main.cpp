@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
   /* setup alpha integration for multiple z-position samples to form profile */
   int nPoints = 200;                                                       // number of z-samples
   float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;   // x,y position of profile, lower and upper limits of profile sample range
-  FILE * pFile;                                                           // output file
+  FILE * pFile;                                                            // output file
   pFile = fopen("zAlpha.txt","w");
 
   /* call integration at all z sample position */
