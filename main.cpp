@@ -14,7 +14,7 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 2e7;        // number of random integers to draws
+  const int nRand = 1e8;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit x
   const float upperLimitX = 1.0;  // upper limt x
   const float lowerLimitY = -1.0;  // lower limit y
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 200;                                                       // number of z-samples
+  int nPoints = 99;                                                       // number of z-samples
   float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;   // x,y position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                            // output file
   pFile = fopen("zAlpha.txt","w");
