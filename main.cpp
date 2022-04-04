@@ -14,7 +14,7 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 5e7;        // number of random integers to draws
+  const int nRand = 1e7;        // number of random integers to draws
   const float lowerLimitX = -1.0;  // lower limit x
   const float upperLimitX = 1.0;  // upper limt x
   const float lowerLimitY = -1.0;  // lower limit y
