@@ -30,23 +30,18 @@ int main(int argc, char *argv[]){
   float fourVol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ)*(upperLimitRho - lowerLimitRho);
   int nAccept;
 
+  /* 1D test integral */
   // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
-  //
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*area);
 
+  /* 2D test integral */
   // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
-  //
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*vol);
 
+  /* 3D test integral */
   // nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
-  //
-  // printf("*********************************\n");
-  // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
-
-  // nAccept = integrate3D(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,alphaExtended);
-  //
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
