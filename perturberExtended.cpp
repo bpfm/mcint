@@ -12,7 +12,7 @@ float perturberExtended(float xx, float yy, float zz){
   float mach = 1.3;
   float tt = 0.5;
   float mp = 1.0;
-  float rs = 0.01;
+  float rs = 0.0001;
 
   float rs2 = rs*rs;
   float rad2 = xx2 + yy2;
