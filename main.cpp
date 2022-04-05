@@ -11,6 +11,8 @@
 #include "alphaAnalytic.h"
 #include "perturberExtended.h"
 
+#include "integrate3DTest.h"
+
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
