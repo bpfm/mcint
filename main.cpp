@@ -71,8 +71,8 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp); // iterate sample position
     nAccept = integrate3DTest(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
-    printf("%f\t%i\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp));
-    fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
+    printf("%f\t%i\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand));
+    fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand));
   }
 
   return 0;
