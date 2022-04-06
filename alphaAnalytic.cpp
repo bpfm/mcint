@@ -10,9 +10,9 @@ float alphaAnalytic(float xx, float yy, float zz){
   float tt2 = tt*tt;
   float cs2 = cs*cs;
 
-  float xOffset = 10.0;
-  float yOffset = 10.0;
-  float zOffset = 10.0;
+  float xOffset = 0.0;
+  float yOffset = 0.0;
+  float zOffset = 0.0;
 
   xx = xx - xOffset;
   yy = yy - yOffset;

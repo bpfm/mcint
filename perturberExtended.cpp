@@ -4,9 +4,9 @@
 
 float perturberExtended(float xx, float yy, float zz){
 
-  float xOffset = 10.0;
-  float yOffset = 10.0;
-  float zOffset = 10.0;
+  float xOffset = 0.0;
+  float yOffset = 0.0;
+  float zOffset = 0.0;
 
   xx = xx - xOffset;
   yy = yy - yOffset;
@@ -27,7 +27,7 @@ float perturberExtended(float xx, float yy, float zz){
   float rad2 = xx2 + yy2;
   // float rad = sqrt(rad2);
 
-  float rho = 3.0*mp*rs2/(4.0*pi*pow(rad2 + rs2 + (zz - cs*mach*tt)*(zz - cs*mach*tt), 2.5));
+  float rho = 3.0*mp*rs2/(4.0*pi*pow((rad2 + rs2 + (zz - cs*mach*tt)*(zz - cs*mach*tt)), 2.5));
 
   return rho/mp;
 }
