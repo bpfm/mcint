@@ -8,9 +8,9 @@
 int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ, float lowerLimitRho, float upperLimitRho){
   float fRandX,fRandY,fRandZ,fRandRho;          // random samples
   float fourVol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ)*(upperLimitRho - lowerLimitRho); // 4D volume
-  int nAccept = 0;  // number of accepted random samples
+  int nAccept = 0;                              // number of accepted random samples
 
-  srand(123456);      // initialise random seed
+  srand(123456);                                // initialise random seed
 
   #pragma omp parallel for
   for(int i=0; i<nRand; i++){
@@ -18,7 +18,7 @@ int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX,
     fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
     fRandZ   = lowerLimitZ   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitZ   - lowerLimitZ)));
     fRandRho = lowerLimitRho + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitRho - lowerLimitRho)));
-    if(abs(fRandRho) <= abs(alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ))){
+    if(fRandRho <= alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ)){
       nAccept++;
     }
     if(i % (nRand/10) == 0){printf("%f\t%i\t%f\n",zp,nAccept,fourVol*float(nAccept)/float(i));}
