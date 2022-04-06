@@ -3,6 +3,8 @@
 #include <stdlib.h>     /* srand, rand */
 #include <omp.h>
 
+#include "alphaAnalytic.h"
+#include "perturberExtended.h"
 #include "alphaExtended.h"
 
 int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX, float upperLimitX, float lowerLimitY, float upperLimitY, float lowerLimitZ, float upperLimitZ, float lowerLimitRho, float upperLimitRho){
@@ -18,10 +20,12 @@ int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX,
     fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
     fRandZ   = lowerLimitZ   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitZ   - lowerLimitZ)));
     fRandRho = lowerLimitRho + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitRho - lowerLimitRho)));
+
+    // printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\n",fRandX,fRandY,fRandZ,fRandRho,alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ),alphaAnalytic(0.0-fRandX,0.0-fRandY,zp-fRandZ),perturberExtended(fRandX,fRandY,fRandZ));
+    // exit(0);
+
     if(fRandRho <= alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ)){
       nAccept++;
-      printf("%f\t%f",fRandRho,alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ));
-      exit(0);
     }
     if(i % (nRand/10) == 0){printf("%f\t%i\t%f\n",zp,nAccept,fourVol*float(nAccept)/float(i));}
   }

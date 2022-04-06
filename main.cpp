@@ -49,10 +49,12 @@ int main(int argc, char *argv[]){
 
   /* setup alpha integration for multiple z-position samples to form profile */
   int nPoints = 99;                                                           // number of z-samples
-  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;    // x,y position of profile, lower and upper limits of profile sample range
+  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;         // x,y position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                               // output file
   pFile = fopen("zAlpha.txt","w");
   
+  // nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+
   /* call integration at all z sample position */
   for(int i=0; i<nPoints; i++){
     zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
@@ -75,7 +77,7 @@ int main(int argc, char *argv[]){
   //   fprintf(pFile, "%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand));
   // }
 
-  fclose(pFile);
+  // fclose(pFile);
 
   return 0;
 }
