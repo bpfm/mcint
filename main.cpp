@@ -85,8 +85,8 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
     nAccept = integrate2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitRho,upperLimitRho);
-    printf("%f\t%i\t%f\t%f\n", sp, nAccept, fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp));
-    fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),perturberExtended(sp,Rp));
+    printf("%f\t%i\t%f\t%f\n", sp, nAccept, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp));
+    fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),perturberExtended(sp,Rp));
   }
 
 
