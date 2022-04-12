@@ -43,6 +43,7 @@ float alphaAnalytic(float xx, float yy, float zz){
 }
 
 float alphaAnalytic(float ss, float RR){
+  RR = abs(RR);
   float gg = 1.0;
   float mp = 1.0;
   float cs = 1.0;
