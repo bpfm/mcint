@@ -56,7 +56,6 @@ float alphaAnalytic(float ss, float RR){
   float vv = mach*cs;
   float zz = ss + mach*cs*tt;
   float zz2 = zz*zz;
-  float ss2 = ss*ss;
   float preFactor = ((gg*mp)/cs2)/sqrt(ss2 + RR2*(1.0 - mach2));
   float alpha;
 
