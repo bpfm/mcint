@@ -5,6 +5,7 @@
 #include "integrate1D.h"
 #include "integrate2D.h"
 #include "integrate3D.h"
+#include "integrate2DAlpha.h"
 #include "integrate3DAlpha.h"
 
 #include "alphaExtended.h"
@@ -47,21 +48,52 @@ int main(int argc, char *argv[]){
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
 
+
+
+
+
+
+  // /* setup alpha integration for multiple z-position samples to form profile */
+  // int nPoints = 99;                                                           // number of z-samples
+  // float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;         // x,y position of profile, lower and upper limits of profile sample range
+  // FILE * pFile;                                                               // output file
+  // pFile = fopen("zAlpha.txt","w");
+  
+  // // nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+
+  // /* call integration at all z sample position */
+  // for(int i=0; i<nPoints; i++){
+  //   zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
+  //   nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+  //   printf("%f\t%i\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp));
+  //   fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
+  // }
+
+
+
+
+
+
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 99;                                                           // number of z-samples
-  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;         // x,y position of profile, lower and upper limits of profile sample range
-  FILE * pFile;                                                               // output file
+  int nPoints = 99;                                                       // number of z-samples
+  float sp, Rp = 0.0, lowerLimitZp = -0.5, upperLimitZp = 1.5;            // s,R position of profile, lower and upper limits of profile sample range
+  FILE * pFile;                                                           // output file
   pFile = fopen("zAlpha.txt","w");
   
   // nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
 
   /* call integration at all z sample position */
   for(int i=0; i<nPoints; i++){
-    zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
-    nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
-    printf("%f\t%i\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp));
-    fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
+    sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
+    nAccept = integrate2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitRho,upperLimitRho);
+    printf("%f\t%i\t%f\t%f\n", sp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp));
+    fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),perturberExtended(sp,Rp));
   }
+
+
+
+
+
 
   // /* setup test integrals for multiple z-position samples to form profile */
   // int nPoints = 100;                                                       // number of z-samples

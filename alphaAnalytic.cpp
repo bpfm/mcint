@@ -41,3 +41,31 @@ float alphaAnalytic(float xx, float yy, float zz){
   }
   return alpha;
 }
+
+float alphaAnalytic(float ss, float RR){
+  float gg = 1.0;
+  float mp = 1.0;
+  float cs = 1.0;
+  float tt = 0.5;
+  float tt2 = tt*tt;
+  float cs2 = cs*cs;
+  float ss2 = ss*ss;
+  float RR2 = RR*RR;
+  float mach = 1.3;
+  float mach2 = mach*mach;
+  float vv = mach*cs;
+  float zz = ss + mach*cs*tt;
+  float zz2 = zz*zz;
+  float ss2 = ss*ss;
+  float preFactor = ((gg*mp)/cs2)/sqrt(ss2 + RR2*(1.0 - mach2));
+  float alpha;
+
+  if(RR2 + zz2 < cs2*tt2){
+    alpha = 1.0*preFactor;
+  }else if((mach > 1.0) && (RR2 + zz2 > cs2*tt2) && (ss/RR < -1.0*sqrt(mach2 - 1.0)) && (zz > cs*tt/mach)){
+    alpha = 2.0*preFactor;
+  }else{
+    alpha = 0.0;
+  }
+  return alpha;
+}

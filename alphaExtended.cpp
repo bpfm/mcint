@@ -12,3 +12,14 @@ float alphaExtended(float xp, float yp, float zp, float xx, float yy, float zz){
   return alpha;
 
 }
+
+float alphaExtended(float sp, float Rp, float ss, float RR){
+  float cs = 1.0;
+  float tt = 0.5;
+  float mach = 1.3;
+
+  float alpha = alphaAnalytic(sp - ss, Rp - RR) * perturberExtended(ss, RR);
+
+  return alpha;
+
+}
