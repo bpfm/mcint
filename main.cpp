@@ -52,8 +52,6 @@ int main(int argc, char *argv[]){
 
 
 
-
-
   /* setup alpha integration for multiple z-position samples to form profile */
   int nPoints = 199;                                                           // number of z-samples
   float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;         // x,y position of profile, lower and upper limits of profile sample range
@@ -71,8 +69,6 @@ int main(int argc, char *argv[]){
 
 
 
-
-
   // /* setup alpha integration for multiple z-position samples to form profile */
   // int nPoints = 99;                                                       // number of z-samples
   // float sp, Rp = 0.0, lowerLimitZp = -1.0, upperLimitZp = 0.5;            // s,R position of profile, lower and upper limits of profile sample range
@@ -86,8 +82,6 @@ int main(int argc, char *argv[]){
   //   printf("%f\t%i\t%f\t%f\n", sp, nAccept, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp));
   //   fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),perturberExtended(sp,Rp));
   // }
-
-
 
 
 
