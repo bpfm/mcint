@@ -34,4 +34,4 @@ plt.ylabel(r"$\alpha$")
 
 plt.legend(loc='upper left')
 
-plt.savefig("alpha.png")
+plt.savefig("alpha"+str(data[0,0])+'-'+str(data[-1,0])+".png")
