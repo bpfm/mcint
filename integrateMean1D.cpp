@@ -4,7 +4,7 @@
 #include <omp.h>
 
 float integrateMean1D(int nRand, float lowerLimitX, float upperLimitX, float (*func1D)(float)){
-  float fRandX,fRandY,funcTot = 0.0,funcMean;           // random samples
+  float fRandX,funcTot = 0.0,funcMean;           // random samples
   float length = (upperLimitX - lowerLimitX);
 
   srand(123456);      // initialise random seed
