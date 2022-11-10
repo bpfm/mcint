@@ -27,7 +27,7 @@ int integrate3DAlpha(float xp, float yp, float zp, int nRand, float lowerLimitX,
     if(fRandRho <= alphaExtended(xp,yp,zp,fRandX,fRandY,fRandZ)){
       nAccept++;
     }
-    if(i % (nRand/10) == 0){printf("%f\t%i\t%f\n",zp,nAccept,fourVol*float(nAccept)/float(i));}
+    // if(i % (nRand/10) == 0){printf("%f\t%i\t%f\n",zp,nAccept,fourVol*float(nAccept)/float(i));}
   }
   return nAccept;
 }

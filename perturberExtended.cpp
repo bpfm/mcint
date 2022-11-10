@@ -38,7 +38,7 @@ float perturberExtended(float ss, float RR){
   float mach = 1.3;
   float tt = 0.5;
   float mp = 1.0;
-  float rs = 0.001;
+  float rs = 0.0001;
 
   float zz = ss + mach*cs*tt;
   float zz2 = zz*zz;

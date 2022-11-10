@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
   const float lowerLimitZ = -1.0;      // lower limit z
   const float upperLimitZ = 3.0;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
-  const float upperLimitRho = 100.0; // upper limit 4th dim
+  const float upperLimitRho = 10.0; // upper limit 4th dim
 
   /* setup 1D, 2D, and 3D volumes for integration regions */
   float area    = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);                                                              // 2D volume
@@ -53,8 +53,8 @@ int main(int argc, char *argv[]){
 
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 299;                                                           // number of z-samples
-  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -1.0, upperLimitZp = 3.0;         // x,y position of profile, lower and upper limits of profile sample range
+  int nPoints = 400;                                                           // number of z-samples
+  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -1.0, upperLimitZp = 2.0;         // x,y position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                               // output file
   pFile = fopen("zAlpha.txt","w");
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
     nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
-    printf("%f\t%i\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp));
+    printf("%f\t%i\t%f\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp), alphaAnalytic(xp,yp,zp)*perturberExtended(xp,yp,zp));
     fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
   }
 
