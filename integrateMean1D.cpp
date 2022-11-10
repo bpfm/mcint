@@ -15,7 +15,7 @@ float integrateMean1D(int nRand, float lowerLimitX, float upperLimitX, float (*f
     funcTot += func1D(fRandX);
   }
 
-  funcMean = funcTot/nRand;
+  funcMean = funcTot/float(nRand);
 
-  return funcMean;
+  return funcMean*length;
 }

@@ -3,6 +3,7 @@
 #include "func2D.h"
 #include "func3D.h"
 #include "integrate1D.h"
+#include "integrateMean1D.h"
 #include "integrate2D.h"
 #include "integrate3D.h"
 #include "integrate2DAlpha.h"
@@ -17,9 +18,9 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 1e7;            // number of random integers to draws
-  const float lowerLimitX = -1.0;      // lower limit x
-  const float upperLimitX = 1.0;    // upper limt x
+  const int nRand = 1e5;            // number of random integers to draws
+  const float lowerLimitX = 0.0;      // lower limit x
+  const float upperLimitX = 0.5;    // upper limt x
   const float lowerLimitY = -1.0;      // lower limit y
   const float upperLimitY = 1.0;    // upper limit y
   const float lowerLimitZ = -1.0;      // lower limit z
@@ -33,11 +34,17 @@ int main(int argc, char *argv[]){
   float fourVol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ)*(upperLimitRho - lowerLimitRho);  // 4D volume
   float fourVol2D = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitRho - lowerLimitRho);                            // 3D volume for alpha(s,R)
   int nAccept;                                                                                                                          // number of accepted random samples
+  float funcMean;
 
   // /* 1D test integral */
   // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*area);
+
+  /* 1D Mean test integral */
+  funcMean = integrateMean1D(nRand,lowerLimitX,upperLimitX,func1D);
+  printf("*********************************\n");
+  printf("%f\n", funcMean);
 
   // /* 2D test integral */
   // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
@@ -51,20 +58,19 @@ int main(int argc, char *argv[]){
 
 
 
+  // /* setup alpha integration for multiple z-position samples to form profile */
+  // int nPoints = 400;                                                           // number of z-samples
+  // float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -1.0, upperLimitZp = 2.0;         // x,y position of profile, lower and upper limits of profile sample range
+  // FILE * pFile;                                                               // output file
+  // pFile = fopen("zAlpha.txt","w");
 
-  /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 400;                                                           // number of z-samples
-  float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -1.0, upperLimitZp = 2.0;         // x,y position of profile, lower and upper limits of profile sample range
-  FILE * pFile;                                                               // output file
-  pFile = fopen("zAlpha.txt","w");
-
-  /* call integration at all z sample position */
-  for(int i=0; i<nPoints; i++){
-    zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
-    nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
-    printf("%f\t%i\t%f\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp), alphaAnalytic(xp,yp,zp)*perturberExtended(xp,yp,zp));
-    fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
-  }
+  // /* call integration at all z sample position */
+  // for(int i=0; i<nPoints; i++){
+  //   zp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
+  //   nAccept = integrate3DAlpha(xp,yp,zp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho);
+  //   printf("%f\t%i\t%f\t%f\t%f\n", zp, nAccept, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp), alphaAnalytic(xp,yp,zp)*perturberExtended(xp,yp,zp));
+  //   fprintf(pFile, "%f\t%f\t%f\t%f\n", zp, fourVol*float(nAccept)/float(nRand), alphaAnalytic(xp,yp,zp),perturberExtended(xp,yp,zp));
+  // }
 
 
 
