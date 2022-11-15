@@ -1,11 +1,14 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
+#include "math.h"
 #include "func1D.h"
 #include "func2D.h"
 #include "func3D.h"
 #include "integrate1D.h"
 #include "integrateMean1D.h"
 #include "integrate2D.h"
+#include "integrateMean2D.h"
 #include "integrate3D.h"
+#include "integrateMean3D.h"
 #include "integrate2DAlpha.h"
 #include "integrate3DAlpha.h"
 
@@ -18,13 +21,13 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 1e5;            // number of random integers to draws
+  const int nRand = 1e2;            // number of random integers to draws
   const float lowerLimitX = 0.0;      // lower limit x
-  const float upperLimitX = 0.5;    // upper limt x
-  const float lowerLimitY = -1.0;      // lower limit y
+  const float upperLimitX = 1.0;    // upper limt x
+  const float lowerLimitY = 0.0;      // lower limit y
   const float upperLimitY = 1.0;    // upper limit y
-  const float lowerLimitZ = -1.0;      // lower limit z
-  const float upperLimitZ = 3.0;    // upper limit z
+  const float lowerLimitZ = 0.0;      // lower limit z
+  const float upperLimitZ = 2.0;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
   const float upperLimitRho = 10.0; // upper limit 4th dim
 
@@ -42,19 +45,37 @@ int main(int argc, char *argv[]){
   // printf("%f\n", float((nAccept)/float(nRand))*area);
 
   /* 1D Mean test integral */
-  funcMean = integrateMean1D(nRand,lowerLimitX,upperLimitX,func1D);
-  printf("*********************************\n");
-  printf("%f\n", funcMean);
+  for (int i = 0; i < 5; i++){
+    nAccept = integrate1D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
+    funcMean = integrateMean1D(pow(10,i)*nRand,lowerLimitX,upperLimitX,func1D);
+    printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-(1.0/3.0)),abs(float((nAccept)/float(pow(10,i)*nRand))*area-(1.0/3.0)));
+  }
 
   // /* 2D test integral */
   // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*vol);
 
+  /* 2D Mean test integral */
+  for (int i = 0; i < 5; i++){
+    nAccept = integrate2D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
+    funcMean = integrateMean2D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func2D);
+    printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-1.0),abs(float((nAccept)/float(pow(10,i)*nRand))*vol-1.0));
+  }
+
   // /* 3D test integral */
   // nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
+
+  /* 3D Mean test integral */
+  for (int i = 0; i < 5; i++){
+    nAccept = integrate3D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
+    funcMean = integrateMean3D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func3D);
+    printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-4.0),abs(float((nAccept)/float(pow(10,i)*nRand))*fourVol-4.0));
+  }
+
+
 
 
 
@@ -107,6 +128,8 @@ int main(int argc, char *argv[]){
   // }
 
   // fclose(pFile);
+
+
 
   return 0;
 }

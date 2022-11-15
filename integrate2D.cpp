@@ -18,7 +18,7 @@ int integrate2D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
     if(fRandZ<=func2D(fRandX,fRandY)){
       nAccept++;
     }
-    if(i % (nRand/100) == 0){printf("%i\t%f\t%f\n",i,vol,vol*float(nAccept)/float(i));}
+    // if(i % (nRand/100) == 0){printf("%i\t%f\t%f\n",i,vol,vol*float(nAccept)/float(i));}
   }
   return nAccept;
 }

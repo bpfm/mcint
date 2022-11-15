@@ -19,7 +19,7 @@ int integrate3D(int nRand, float lowerLimitX, float upperLimitX, float lowerLimi
     if(fRandRho <= func3D(fRandX,fRandY,fRandZ)){
       nAccept++;
     }
-    if(i % (nRand/100) == 0){printf("%i\t%f\t%f\n",i,fourVol,fourVol*float(nAccept)/float(i));}
+    // if(i % (nRand/100) == 0){printf("%i\t%f\t%f\n",i,fourVol,fourVol*float(nAccept)/float(i));}
   }
   return nAccept;
 }
