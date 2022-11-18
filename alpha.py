@@ -25,13 +25,14 @@ import matplotlib.pyplot as plt
 data = np.loadtxt("zAlpha.txt")
 
 plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,1],label='MC')
+plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,3]/10.0,label='Mean')
 plt.plot(data[:,0],data[:,2]/400.0,color='black',label='Analytic')
 # plt.plot(data[:,0],data[:,3]/np.max(data[:,3]),color='red',label='Density')
-plt.ylim(-0.0003,0.03)
+plt.ylim(-0.0006,0.09)
 
 plt.xlabel(r"$z$")
 plt.ylabel(r"$\alpha$")
 
 plt.legend(loc='upper left')
 
-plt.savefig("alpha"+str(data[0,0])+'-'+str(data[-1,0])+".png",bbox_inches='tight')
+plt.savefig("alphaOffset"+str(data[0,0])+'-'+str(data[-1,0])+".png",bbox_inches='tight')
