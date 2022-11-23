@@ -15,10 +15,10 @@ float integrateMean2DAlpha(float sp, float Rp, int nRand, float lowerLimitX, flo
   for(int i=0; i<nRand; i++){
     fRandX   = lowerLimitX   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitX   - lowerLimitX)));
     fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
-    funcTot += alphaExtended(sp,Rp,fRandX,fRandY)
+    funcTot += alphaExtended(sp,Rp,fRandX,fRandY);
   }
 
   funcMean = funcTot/float(nRand);
 
-  return funcMean*volume;
+  return funcMean*area;
 }

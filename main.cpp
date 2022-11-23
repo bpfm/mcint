@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
     nAccept = integrate2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitRho,upperLimitRho);
     funcMean = integrateMean2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
     printf("%f\t%i\t%f\t%f\t%f\n", sp, nAccept, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),alphaAnalytic(sp,Rp)*perturberExtended(sp,Rp));
-    fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),funcMean,perturberExtended(sp,Rp));
+    fprintf(pFile, "%f\t%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),funcMean,perturberExtended(sp,Rp));
   }
 
   fclose(pFile);
