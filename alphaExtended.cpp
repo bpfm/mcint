@@ -3,9 +3,6 @@
 #include "perturberExtended.h"
 
 float alphaExtended(float xp, float yp, float zp, float xx, float yy, float zz){
-  float cs = 1.0;
-  float tt = 0.5;
-  float mach = 1.3;
 
   float alpha = alphaAnalytic(xp - xx, yp - yy, zp - zz) * perturberExtended(xx, yy, zz);
 
@@ -14,9 +11,6 @@ float alphaExtended(float xp, float yp, float zp, float xx, float yy, float zz){
 }
 
 float alphaExtended(float sp, float Rp, float ss, float RR){
-  float cs = 1.0;
-  float tt = 0.5;
-  float mach = 1.3;
 
   float alpha = alphaAnalytic(sp - ss, Rp - RR) * perturberExtended(ss, RR);
 

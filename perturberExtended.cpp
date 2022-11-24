@@ -1,9 +1,9 @@
 // perturberExtended.cpp
 #include <stdlib.h>
 #include <math.h>
+#include "constants.h"
 
 float perturberExtended(float xx, float yy, float zz){
-
   float xOffset = 0.0;
   float yOffset = 0.0;
   float zOffset = 0.0;
@@ -18,7 +18,6 @@ float perturberExtended(float xx, float yy, float zz){
 
   float pi = 3.14159;
   float cs = 1.0;
-  float mach = 1.3;
   float tt = 0.5;
   float mp = 1.0;
   float rs = 0.001;
@@ -33,13 +32,6 @@ float perturberExtended(float xx, float yy, float zz){
 }
 
 float perturberExtended(float ss, float RR){
-  float pi = 3.14159;
-  float cs = 1.0;
-  float mach = 1.3;
-  float tt = 0.5;
-  float mp = 1.0;
-  float rs = 0.0001;
-
   float zz = ss + mach*cs*tt;
   float zz2 = zz*zz;
 

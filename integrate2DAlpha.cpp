@@ -21,7 +21,7 @@ int integrate2DAlpha(float sp, float Rp, int nRand, float lowerLimitX, float upp
     if(fRandRho <= alphaExtended(sp,Rp,fRandX,fRandY)){
       nAccept++;
     }
-    if(i % (nRand/10) == 0){printf("%i\t%f\n",nAccept,Vol*float(nAccept)/float(i));}
+    // if(i % (nRand/10) == 0){printf("%i\t%f\n",nAccept,Vol*float(nAccept)/float(i));}
   }
   return nAccept;
 }

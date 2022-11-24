@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include "constants.h"
 
 float alphaAnalytic(float xx, float yy, float zz){
   float gg = 1.0;
   float mp = 1.0;
   float cs = 1.0;
   float tt = 0.5;
-  float mach = 1.3;
 
   float xOffset = 0.0;
   float yOffset = 0.0;
@@ -45,11 +45,6 @@ float alphaAnalytic(float xx, float yy, float zz){
 
 float alphaAnalytic(float ss, float RR){
   RR = abs(RR);
-  float gg = 1.0;
-  float mp = 1.0;
-  float cs = 1.0;
-  float tt = 0.5;
-  float mach = 1.3;
 
   float tt2 = tt*tt;
   float cs2 = cs*cs;
