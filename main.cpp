@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
   const float upperLimitX = 1.0;    // upper limt x
   const float lowerLimitY = -1.0;      // lower limit y
   const float upperLimitY = 1.0;    // upper limit y
-  const float lowerLimitZ = -1.0;      // lower limit z
+  const float lowerLimitZ = -1.5;      // lower limit z
   const float upperLimitZ = 3.0;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
   const float upperLimitRho = 2000.0; // upper limit 4th dim
@@ -97,7 +97,7 @@ int main(int argc, char *argv[]){
 
   /* setup alpha integration for multiple z-position samples to form profile */
   int nPoints = 199;                                                       // number of z-samples
-  float sp, Rp = 0.0, lowerLimitZp = -1.9, upperLimitZp = 0.1;            // s,R position of profile, lower and upper limits of profile sample range
+  float sp, Rp = 0.0, lowerLimitZp = -1.5, upperLimitZp = 0.5;            // s,R position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");
 
