@@ -9,7 +9,7 @@ float integrateMean2DAlpha(float sp, float Rp, int nRand, float lowerLimitX, flo
   float fRandX,fRandY,funcTot,funcMean;          // random samples
   float area = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY);
 
-  srand(123456);                                // initialise random seed
+  // srand(123456);                                // initialise random seed
 
   #pragma omp parallel for
   for(int i=0; i<nRand; i++){
