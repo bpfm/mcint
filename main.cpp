@@ -21,7 +21,7 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 1e7;            // number of random integers to draws
+  const int nRand = 1e6;            // number of random integers to draws
   const float lowerLimitX = -1.5;      // lower limit x
   const float upperLimitX = 0.1;    // upper limt x
   const float lowerLimitY = -1.0;      // lower limit y
@@ -97,16 +97,16 @@ int main(int argc, char *argv[]){
   // }
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 1;                                                       // number of z-samples
+  int nPoints = 199;                                                       // number of z-samples
   float sp, Rp = 0.0, lowerLimitZp = -1.3, upperLimitZp = 0.2;            // s,R position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");
 
   /* call integration at all z sample position */
   for(int i=0; i<nPoints; i++){
-    sp = -0.4;//(upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
+    sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
     // nAccept = integrate2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitRho,upperLimitRho);
-    for (int j=0; j<100000; j++){
+    for (int j=0; j<1; j++){
       funcMean = integrateMean2DAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
       printf("%f\t%i\t%f\t%f\t%f\n", sp, j, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
       fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
