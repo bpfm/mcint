@@ -5,3 +5,4 @@ float const cs = 1.0;
 float const tt = 0.5;
 float const mp = 1.0;
 float const rs = 0.0001;
+float const vv = (mach*cs);
