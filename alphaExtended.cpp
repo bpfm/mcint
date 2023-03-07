@@ -17,3 +17,11 @@ float alphaExtended(float sp, float Rp, float ss, float RR){
   return alpha;
 
 }
+
+float alphaExtended(float rp, float  phip, int sphericalPolar, float rr, float phi){
+
+  float alpha = alphaAnalytic(rp - rr, phip - phi, sphericalPolar) * perturberExtended(rr, phi);
+
+  return alpha;
+
+}
