@@ -25,11 +25,11 @@ int main(int argc, char *argv[]){
   /* setup limits of integration region */
   const int nRand = 1e6;            // number of random integers to draws
   const float lowerLimitX = -1.5;      // lower limit x
-  const float upperLimitX = 0.1;    // upper limt x
-  const float lowerLimitY = -1.0;      // lower limit y
-  const float upperLimitY = 1.0;    // upper limit y
+  const float upperLimitX = 1.5;    // upper limt x
+  const float lowerLimitY = 0.0;      // lower limit y
+  const float upperLimitY = 3.141529;    // upper limit y
   const float lowerLimitZ = -1.5;      // lower limit z
-  const float upperLimitZ = 3.0;    // upper limit z
+  const float upperLimitZ = 1.5;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
   const float upperLimitRho = 2000.0; // upper limit 4th dim
 
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
     for (int j=0; j<1; j++){
-      funcMean = integrateMean2DSPAlpha(sp,Rp,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,sp + vv*tt);
+      funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
       printf("%f\t%i\t%f\t%f\t%f\n", sp, j, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
       fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
     }
