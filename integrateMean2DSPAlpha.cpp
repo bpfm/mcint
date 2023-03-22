@@ -1,4 +1,5 @@
 #include <omp.h>
+#include "math.h"
 
 #include "alphaExtended.h"
 

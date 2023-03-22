@@ -11,6 +11,7 @@
 #include "integrateMean3D.h"
 #include "integrate2DAlpha.h"
 #include "integrateMean2DAlpha.h"
+#include "integrateMean2DSPAlpha.h"
 #include "integrate3DAlpha.h"
 #include "integrateMean3DAlpha.h"
 
