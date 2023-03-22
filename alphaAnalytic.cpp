@@ -75,7 +75,7 @@ float alphaAnalytic(float rr, float phi, int sphericalPolar){
 
   if((rr2*sin2 + (rr*cos(phi)+vv*tt)*(rr*cos(phi)+vv*tt)) < cs2*tt2){
     alpha = 1.0*preFactor;
-  }else if((mach > 1.0) && ((rr2*sin2 + (rr*cos(phi) + vv*tt)*(rr*cos(phi) + vv*tt)) > cs2*tt2) && (cos(phi)/sin(phi) < -1.0*sqrt(mach2 - 1.0)) && ((rr*cos(phi) + vv*tt) > cs*tt/mach)){
+  }else if((mach > 1.0) && ((rr2*sin2 + (rr*cos(phi)+vv*tt)*(rr*cos(phi)+vv*tt)) > cs2*tt2) && (cos(phi)/(sin(phi)) < -1.0*sqrt(mach2 - 1.0)) && ((rr*cos(phi)+vv*tt) > cs*tt/mach)){
     alpha = 2.0*preFactor;
   }else{
     alpha = 0.0;

@@ -22,17 +22,17 @@ mpl.rcParams["ytick.direction"] = "in"
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt("zAlpha.txt")
+data = np.loadtxt("zAlphaSR.txt")
 
-plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,1],label='MC')
-plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,3]/10.0,label='Mean')
-plt.plot(data[:,0],data[:,2]/400.0,color='black',label='Analytic')
-# plt.plot(data[:,0],data[:,3]/np.max(data[:,3]),color='red',label='Density')
-plt.ylim(-0.0006,0.09)
+plt.scatter(data[:,0],data[:,1],label='Spherical Polar')
+# plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,3]/10.0,label='Mean')
+plt.plot(data[:,0],data[:,2],color='black',label='Analytic')
+# # plt.plot(data[:,0],data[:,3]/np.max(data[:,3]),color='red',label='Density')
+plt.ylim(-0.1,50.1)
 
 plt.xlabel(r"$z$")
 plt.ylabel(r"$\alpha$")
 
 plt.legend(loc='upper left')
 
-plt.savefig("alphaOffset"+str(data[0,0])+'-'+str(data[-1,0])+".png",bbox_inches='tight')
+plt.savefig("alphaSP.png",bbox_inches='tight')
