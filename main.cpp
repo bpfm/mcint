@@ -24,10 +24,10 @@ int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
   const int nRand = 1e6;            // number of random integers to draws
-  const float lowerLimitX = -1.5;      // lower limit x
+  const float lowerLimitX = 0.0;      // lower limit x
   const float upperLimitX = 1.5;    // upper limt x
   const float lowerLimitY = 0.0;      // lower limit y
-  const float upperLimitY = 3.141529;    // upper limit y
+  const float upperLimitY = 2.0*3.141529;    // upper limit y
   const float lowerLimitZ = -1.5;      // lower limit z
   const float upperLimitZ = 1.5;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]){
 
   /* setup alpha integration for multiple z-position samples to form profile */
   int nPoints = 199;                                                       // number of z-samples
-  float sp, Rp = 0.0, lowerLimitZp = -1.3, upperLimitZp = 0.2;            // s,R position of profile, lower and upper limits of profile sample range
+  float sp, Rp = 0.0, lowerLimitZp = 0.0, upperLimitZp = 1.5;            // s,R position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");
 
@@ -125,9 +125,11 @@ int main(int argc, char *argv[]){
   for(int i=0; i<nPoints; i++){
     sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
     for (int j=0; j<1; j++){
+      funcMean = 0.0;
+      // fprintf(pFile,"%f\t%f\t%f\n",-1.0*sp,alphaAnalytic(sp,3.141529,1),alphaAnalytic(-1.0*sp,Rp));
       funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
-      printf("%f\t%i\t%f\t%f\t%f\n", sp, j, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
-      fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.14159*funcMean);
+      printf("%f\t%i\t%f\t%f\t%f\n", sp, j, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(-1.0*sp,Rp),2.0*3.14159*funcMean);
+      fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.14159*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(-1.0*sp,Rp),2.0*3.14159*funcMean);
     }
   }
 
