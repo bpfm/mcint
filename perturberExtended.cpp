@@ -1,4 +1,5 @@
 // perturberExtended.cpp
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "constants.h"
@@ -49,6 +50,8 @@ float perturberExtended(float rr, float phi, int sphericalPolar){
   float rr2 = rr*rr;
 
   float rho = 3.0*mp*rs2/(4.0*pi*pow((rr2 + rs2), 2.5));
+
+  // printf("%f\t%f\t%f\n",rr,rs,rho);
 
   return rho/mp;
 }
