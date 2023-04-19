@@ -24,11 +24,19 @@ import matplotlib.pyplot as plt
 
 data = np.loadtxt("zAlphaSR.txt")
 
-plt.scatter(data[:,0],data[:,3]/2e8,label='Spherical Polar')
-# plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,3]/10.0,label='Mean')
+for i in range(0,len(data[:,0])):
+    if data[i,0] > 0.0:
+        data[i,0] = -1.0*data[i,0]
+
+# plt.hist(data[:,0],weights=data[:,3],bins=50)
+
 plt.plot(data[:,0],data[:,2],color='black',label='Analytic')
+# plt.scatter(data[:,0],data[:,3],label='Spherical Polar')
+plt.scatter(data[0:150,0],data[0:150,3],label='Behind')
+plt.scatter(data[151:-1,0],data[151:-1,3],label='Forward')
+# plt.scatter(data[:,0]-0.5*1.3*1.0,data[:,3]/10.0,label='Mean')
 # # plt.plot(data[:,0],data[:,3]/np.max(data[:,3]),color='red',label='Density')
-# plt.ylim(-0.1,50.1)
+plt.ylim(-0.1,50.1)
 
 plt.xlabel(r"$s$")
 plt.ylabel(r"$\alpha$")

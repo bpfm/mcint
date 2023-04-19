@@ -64,6 +64,9 @@ float alphaAnalytic(float ss, float RR){
 }
 
 float alphaAnalytic(float rr, float phi, int sphericalPolar){
+
+  rr = abs(rr);
+
   float tt2 = tt*tt;
   float cs2 = cs*cs;
   float mach2 = mach*mach;
@@ -80,6 +83,5 @@ float alphaAnalytic(float rr, float phi, int sphericalPolar){
   }else{
     alpha = 0.0;
   }
-
   return alpha;
 }
