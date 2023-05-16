@@ -23,7 +23,7 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 1e6;            // number of random integers to draws
+  const int nRand = 1e8;            // number of random integers to draws
   const float lowerLimitX = 0.0;      // lower limit x
   const float upperLimitX = 1.5;    // upper limt x
   const float lowerLimitY = 0.0;      // lower limit y
@@ -40,8 +40,6 @@ int main(int argc, char *argv[]){
   float fourVol2D = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitRho - lowerLimitRho);                            // 3D volume for alpha(s,R)
   float funcMean;
   int nAccept = 0;                                                                                                                      // number of accepted random samples
-
-  srand(123456); // initialise random seed
 
   // /* 1D test integral */
   // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);

@@ -13,7 +13,7 @@ float integrateMean2DSPAlpha(float sp, float Rp, float zp, int nRand, float lowe
   float rp = sqrt(Rp*Rp + sp*sp);
   float phip = acos(sp/rp);
 
-  srand(123456);                                // initialise random seed
+  srand(456789);                                // initialise random seed
 
   // #pragma omp parallel for
   for(int i=0; i<nRand; i++){
