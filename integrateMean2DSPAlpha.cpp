@@ -20,11 +20,8 @@ float integrateMean2DSPAlpha(float sp, float Rp, float zp, int nRand, float lowe
     fRandX   = lowerLimitX   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitX   - lowerLimitX)));
     fRandY   = lowerLimitY   + static_cast <float> (rand()) / (static_cast <float> (float(RAND_MAX)/(upperLimitY   - lowerLimitY)));
     funcTot += alphaExtended(rp,phip,1,fRandX,fRandY);
-    // if(alphaExtended(rp,phip,1,fRandX,fRandY)>100000.0){
-    //   printf("%f\t%f\t%f\t%f\t%f\t%f\n",rp,phip,fRandX,fRandY,alphaExtended(rp,phip,1,fRandX,fRandY),funcTot);
-    //   exit(0);
-    // }
   }
+  // exit(0);
 
   funcMean = funcTot/float(nRand);
 

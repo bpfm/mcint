@@ -53,5 +53,5 @@ float perturberExtended(float rr, float phi, int sphericalPolar){
 
   // printf("%f\t%f\t%f\n",rr,rs,rho);
 
-  return rho/mp;
+  return 1.0;//rho/mp;
 }

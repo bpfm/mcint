@@ -23,7 +23,7 @@
 int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
-  const int nRand = 1e8;            // number of random integers to draws
+  const int nRand = 1e6;            // number of random integers to draws
   const float lowerLimitX = 0.0;      // lower limit x
   const float upperLimitX = 1.5;    // upper limt x
   const float lowerLimitY = 0.0;      // lower limit y
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]){
   // }
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 300;                                                       // number of z-samples
+  int nPoints = 200;                                                       // number of z-samples
   float sp, Rp = 0.0, lowerLimitZp = -1.2, upperLimitZp = 1.2;            // s,R position of profile, lower and upper limits of profile sample range
   FILE * pFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");

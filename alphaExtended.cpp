@@ -25,14 +25,14 @@ float alphaExtended(float rp, float phip, int sphericalPolar, float rr, float ph
 
   // printf("***\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi);
 
-  float alpha = rr*rr*sin(phi)*alphaAnalytic(rp - rr, phip - phi, sphericalPolar) * perturberExtended(rr, phi, sphericalPolar);
+  float alpha = rr*rr*sin(phi) * alphaAnalytic(rp - rr, phip - phi, sphericalPolar) * perturberExtended(rr, phi, sphericalPolar);
 
   // if(alpha>0.0001){
   //   printf("***\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi,alpha,alphaAnalytic(rp - rr, phip - phi, sphericalPolar),perturberExtended(rr, phi, sphericalPolar));
   //   exit(0);
   // }
 
-  // printf("***\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi,alpha,alphaAnalytic(rp - rr, phip - phi, sphericalPolar),perturberExtended(rr, phi, sphericalPolar));
+  // printf("***\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi,rp - rr,phip - phi,alpha,alphaAnalytic(rp - rr, phip - phi, sphericalPolar),perturberExtended(rr, phi, sphericalPolar));
 
   return alpha;
 
