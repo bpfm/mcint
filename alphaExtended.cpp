@@ -21,11 +21,18 @@ float alphaExtended(float sp, float Rp, float ss, float RR){
 
 }
 
-float alphaExtended(float rp, float phip, int sphericalPolar, float rr, float phi){
+float alphaExtended(float sp, float Rp, int sphericalPolar, float ss, float RR, FILE *testFile){
 
-  // printf("***\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi);
+  float rr = sqrt(RR*RR + ss*ss);
+  float phi = acos(ss/rr);
 
-  float alpha = rr*rr*sin(phi) * alphaAnalytic(rp - rr, phip - phi, sphericalPolar) * perturberExtended(rr, phi, sphericalPolar);
+  float sShift = sp - ss;
+  float RShift = Rp - RR;
+
+  float rShift = sqrt(RShift*RShift + sShift*sShift);
+  float phiShift = acos(sShift/rShift);
+
+  float alpha = rr*rr*sin(phi) * alphaAnalytic(rShift, phiShift, sphericalPolar, testFile) * perturberExtended(rr, phi, sphericalPolar);
 
   // if(alpha>0.0001){
   //   printf("***\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",rp,phip,rr,phi,alpha,alphaAnalytic(rp - rr, phip - phi, sphericalPolar),perturberExtended(rr, phi, sphericalPolar));

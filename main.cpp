@@ -24,10 +24,10 @@ int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
   const int nRand = 1e6;            // number of random integers to draws
-  const float lowerLimitX = 0.0;      // lower limit x
+  const float lowerLimitX = -1.5;      // lower limit x
   const float upperLimitX = 1.5;    // upper limt x
   const float lowerLimitY = 0.0;      // lower limit y
-  const float upperLimitY = 3.141593;    // upper limit y
+  const float upperLimitY = 1.5;    // upper limit y
   const float lowerLimitZ = -1.5;      // lower limit z
   const float upperLimitZ = 1.5;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
@@ -80,7 +80,6 @@ int main(int argc, char *argv[]){
 
 
 
-
   // /* setup alpha integration for multiple z-position samples to form profile */
   // int nPoints = 199;                                                           // number of z-samples
   // float xp = 0.0, yp = 0.0, zp, lowerLimitZp = -0.5, upperLimitZp = 1.5;       // x,y position of profile, lower and upper limits of profile sample range
@@ -114,10 +113,11 @@ int main(int argc, char *argv[]){
   // }
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 200;                                                       // number of z-samples
-  float sp, Rp = 0.0, lowerLimitZp = -1.2, upperLimitZp = 1.2;            // s,R position of profile, lower and upper limits of profile sample range
-  FILE * pFile;                                                           // output file
+  int nPoints = 100;                                                       // number of z-samples
+  float sp, Rp = 0.0, lowerLimitZp = -1.2, upperLimitZp = 1.2, fRandX;            // s,R position of profile, lower and upper limits of profile sample range
+  FILE *pFile, *testFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");
+  testFile = fopen("zAlphaTest.txt","w");
 
   /* call integration at all z sample position */
   for(int i=0; i<nPoints; i++){
@@ -127,13 +127,28 @@ int main(int argc, char *argv[]){
     for (int j=0; j<1; j++){
       funcMean = 0.0;
       // fprintf(pFile,"%f\t%f\t%f\n",-1.0*sp,alphaAnalytic(sp,3.141529,1),alphaAnalytic(-1.0*sp,Rp));
-      funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
-      printf("%f\t%f\t%f\t%f\t%f\n", rp, phip, 2.0*3.141593*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
-      fprintf(pFile, "%f\t%f\t%f\t%f\n", sp, 2.0*3.141593*fourVol2D*float(nAccept)/float(nRand), alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
+      funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,testFile);
+      printf("%f\t%f\t%f\t%f\n", rp, phip, alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
+      fprintf(pFile, "%f\t%f\t%f\n", sp, alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
     }
   }
 
-  fclose(pFile);
+  // float rr, phi;
 
+  // for (int i = 0; i < 100; i++){
+  //   rr = (upperLimitX - (lowerLimitX))*float(i)/float(100) + (lowerLimitX);
+  //   phi = -3.141593;
+  //   alphaAnalytic(1.0-rr, 0.0-phi, 1, testFile);
+  // }
+
+  // for (int i = 0; i < 100; i++){
+  //   rr = (upperLimitX - (lowerLimitX))*float(i)/float(100) + (lowerLimitX);
+  //   phi = 0.0;
+  //   alphaAnalytic(1.0-rr, 0.0-phi, 1, testFile);
+  // }
+
+  fclose(pFile); 
+  fclose(testFile);
+ 
   return 0;
 }

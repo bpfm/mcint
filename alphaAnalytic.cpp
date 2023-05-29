@@ -63,9 +63,7 @@ float alphaAnalytic(float ss, float RR){
   return alpha;
 }
 
-float alphaAnalytic(float rr, float phi, int sphericalPolar){
-
-  rr = abs(rr);
+float alphaAnalytic(float rr, float phi, int sphericalPolar, FILE *testFile){
 
   float tt2 = tt*tt;
   float cs2 = cs*cs;
@@ -83,5 +81,8 @@ float alphaAnalytic(float rr, float phi, int sphericalPolar){
   }else{
     alpha = 0.0;
   }
+
+  fprintf(testFile, "%f\t%f\t%f\n", 1.0-rr, 0.0-phi, alpha);
+
   return alpha;
 }
