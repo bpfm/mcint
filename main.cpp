@@ -113,8 +113,8 @@ int main(int argc, char *argv[]){
   // }
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 100;                                                       // number of z-samples
-  float sp, Rp = 0.0, lowerLimitZp = -1.2, upperLimitZp = 1.2, fRandX;            // s,R position of profile, lower and upper limits of profile sample range
+  int nPoints = 50;                                                       // number of z-samples
+  float sp, Rp = 0.0, lowerLimitZp = -0.6, upperLimitZp = 0.1, fRandX;            // s,R position of profile, lower and upper limits of profile sample range
   FILE *pFile, *testFile;                                                           // output file
   pFile = fopen("zAlphaSR.txt","w");
   testFile = fopen("zAlphaTest.txt","w");
@@ -132,20 +132,6 @@ int main(int argc, char *argv[]){
       fprintf(pFile, "%f\t%f\t%f\n", sp, alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
     }
   }
-
-  // float rr, phi;
-
-  // for (int i = 0; i < 100; i++){
-  //   rr = (upperLimitX - (lowerLimitX))*float(i)/float(100) + (lowerLimitX);
-  //   phi = -3.141593;
-  //   alphaAnalytic(1.0-rr, 0.0-phi, 1, testFile);
-  // }
-
-  // for (int i = 0; i < 100; i++){
-  //   rr = (upperLimitX - (lowerLimitX))*float(i)/float(100) + (lowerLimitX);
-  //   phi = 0.0;
-  //   alphaAnalytic(1.0-rr, 0.0-phi, 1, testFile);
-  // }
 
   fclose(pFile); 
   fclose(testFile);

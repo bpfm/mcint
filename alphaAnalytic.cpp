@@ -54,7 +54,7 @@ float alphaAnalytic(float ss, float RR){
 
   if(RR2 + zz2 < cs2*tt2){
     alpha = 1.0*preFactor;
-  }else if((mach > 1.0) && (RR2 + zz2 > cs2*tt2) && (ss/RR < -1.0*sqrt(mach2 - 1.0)) && (zz > cs*tt/mach)){
+  }else if((mach > 1.0) && (RR2 + zz2 >= cs2*tt2) && (ss/RR < -1.0*sqrt(mach2 - 1.0)) && (zz > cs*tt/mach)){
     alpha = 2.0*preFactor;
   }else{
     alpha = 0.0;
@@ -76,13 +76,13 @@ float alphaAnalytic(float rr, float phi, int sphericalPolar, FILE *testFile){
 
   if((rr2*sin2 + (rr*cos(phi)+vv*tt)*(rr*cos(phi)+vv*tt)) < cs2*tt2){
     alpha = 1.0*preFactor;
-  }else if((mach > 1.0) && ((rr2*sin2 + (rr*cos(phi)+vv*tt)*(rr*cos(phi)+vv*tt)) > cs2*tt2) && (cos(phi)/(sin(phi)) < -1.0*sqrt(mach2 - 1.0)) && ((rr*cos(phi)+vv*tt) > cs*tt/mach)){
+  }else if((mach >= 1.0) && ((rr2*sin2 + (rr*cos(phi)+vv*tt)*(rr*cos(phi)+vv*tt)) >= cs2*tt2) && (cos(phi)/(sin(phi)) <= -1.0*sqrt(mach2 - 1.0)) && ((rr*cos(phi)+vv*tt) >= cs*tt/mach)){
     alpha = 2.0*preFactor;
   }else{
     alpha = 0.0;
   }
 
-  fprintf(testFile, "%f\t%f\t%f\n", 1.0-rr, 0.0-phi, alpha);
+  // fprintf(testFile, "%f\t%f\t%f\n", 1.0-rr, 0.0-phi, alpha);
 
   return alpha;
 }
