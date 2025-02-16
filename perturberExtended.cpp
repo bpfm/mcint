@@ -55,3 +55,17 @@ float perturberExtended(float rr, float phi, int sphericalPolar){
 
   return rho/mp;
 }
+
+float perturberFlat(float rr, float phi, int sphericalPolar){
+  float rs2 = rs*rs;
+  float rr2 = rr*rr;
+  float rho;
+
+  if(rr2 < rs2){
+    rho = (3.0*mp/4.0/pi/pow(rs,3.0));;
+  }else{
+    rho = 0.0;
+  }
+
+  return rho/mp;
+}

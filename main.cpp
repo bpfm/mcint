@@ -24,12 +24,12 @@ int main(int argc, char *argv[]){
 
   /* setup limits of integration region */
   const long int nRand = 1e6;            // number of random integers to draws
-  const float lowerLimitX = -1.5;      // lower limit x
-  const float upperLimitX = 1.5;    // upper limt x
-  const float lowerLimitY = -1.5;      // lower limit y
-  const float upperLimitY = 1.5;    // upper limit y
-  const float lowerLimitZ = -1.5;      // lower limit z
-  const float upperLimitZ = 1.5;    // upper limit z
+  const float lowerLimitX = -1.0*rs;      // lower limit x
+  const float upperLimitX = rs;    // upper limt x
+  const float lowerLimitY = -1.0*rs;      // lower limit y
+  const float upperLimitY = rs;    // upper limit y
+  const float lowerLimitZ = -1.0*rs;      // lower limit z
+  const float upperLimitZ = rs;    // upper limit z
   const float lowerLimitRho = 0.0;  // lower limit 4th dim
   const float upperLimitRho = 2000.0; // upper limit 4th dim
 
@@ -38,45 +38,39 @@ int main(int argc, char *argv[]){
   float vol     = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ);                                  // 3D volume       
   float fourVol = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitZ - lowerLimitZ)*(upperLimitRho - lowerLimitRho);  // 4D volume
   float fourVol2D = (upperLimitX - lowerLimitX)*(upperLimitY - lowerLimitY)*(upperLimitRho - lowerLimitRho);                            // 3D volume for alpha(s,R)
-  float funcMean;
+  float funcMean,funcMean1,funcMean2;
   int nAccept = 0;                                                                                                                      // number of accepted random samples
 
   // /* 1D test integral */
   // nAccept = integrate1D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*area);
-
   /* 1D Mean test integral */
   // for (int i = 0; i < 5; i++){
   //   nAccept = integrate1D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func1D);
   //   funcMean = integrateMean1D(pow(10,i)*nRand,lowerLimitX,upperLimitX,func1D);
   //   printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-(1.0/3.0)),abs(float((nAccept)/float(pow(10,i)*nRand))*area-(1.0/3.0)));
   // }
-
   // /* 2D test integral */
   // nAccept = integrate2D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*vol);
-
   /* 2D Mean test integral */
   // for (int i = 0; i < 5; i++){
   //   nAccept = integrate2D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func2D);
   //   funcMean = integrateMean2D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,func2D);
   //   printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-1.0),abs(float((nAccept)/float(pow(10,i)*nRand))*vol-1.0));
   // }
-
   // /* 3D test integral */
   // nAccept = integrate3D(nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
   // printf("*********************************\n");
   // printf("%f\n", float((nAccept)/float(nRand))*fourVol);
-
   /* 3D Mean test integral */
   // for (int i = 0; i < 5; i++){
   //   nAccept = integrate3D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,lowerLimitRho,upperLimitRho,func3D);
   //   funcMean = integrateMean3D(pow(10,i)*nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY,lowerLimitZ,upperLimitZ,func3D);
   //   printf("%i\t%f\t%f\n",int(pow(10,i)*nRand),abs(funcMean-4.0),abs(float((nAccept)/float(pow(10,i)*nRand))*fourVol-4.0));
   // }
-
 
 
 
@@ -113,22 +107,26 @@ int main(int argc, char *argv[]){
   // }
 
   /* setup alpha integration for multiple z-position samples to form profile */
-  int nPoints = 100;                                                       // number of z-samples
-  float sp, Rp = 0.0, lowerLimitZp = -1.2, upperLimitZp = 0.1, fRandX;            // s,R position of profile, lower and upper limits of profile sample range
+  int nPoints = 1000;                                                       // number of z-samples
+  float sp, Rp = 0.0, lowerLimitSp = -15.0, upperLimitSp = 5.0, fRandX;            // s,R position of profile, lower and upper limits of profile sample range
   FILE *pFile, *testFile;                                                           // output file
-  pFile = fopen("zAlphaSR.txt","w");
+  pFile = fopen("zAlphaSRRs0.1Split.txt","w");
 
   /* call integration at all z sample position */
   for(int i=0; i<nPoints; i++){
-    sp = (upperLimitZp - (lowerLimitZp))*float(i)/float(nPoints) + (lowerLimitZp);
+    sp = (upperLimitSp - (lowerLimitSp))*float(i)/float(nPoints) + (lowerLimitSp);
     float rp = sqrt(Rp*Rp + sp*sp);
     float phip = acos(sp/rp);
     for (int j=0; j<1; j++){
       funcMean = 0.0;
+      funcMean1 = 0.0;
+      funcMean2 = 0.0;
       // fprintf(pFile,"%f\t%f\t%f\n",-1.0*sp,alphaAnalytic(sp,3.141529,1),alphaAnalytic(-1.0*sp,Rp));
-      funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
-      printf("%f\t%f\t%f\t%f\n", rp, phip, alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
-      fprintf(pFile, "%f\t%f\t%f\n", sp, alphaAnalytic(sp,Rp),2.0*3.141593*funcMean);
+      // funcMean = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,upperLimitX,lowerLimitY,upperLimitY);
+      funcMean1 = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,lowerLimitX,0.0,lowerLimitY,upperLimitY);
+      funcMean2 = integrateMean2DSPAlpha(sp,Rp,sp + vv*tt,nRand,0.0,upperLimitX,lowerLimitY,upperLimitY);
+      printf("%f\t%f\t%f\t%f\n", rp, phip, alphaAnalytic(sp,Rp),2.0*3.141593*(funcMean1+funcMean2));
+      fprintf(pFile, "%f\t%f\t%f\n", sp, alphaAnalytic(sp,Rp),2.0*3.141593*(funcMean1+funcMean2));
     }
   }
 

@@ -32,7 +32,8 @@ float alphaExtended(float sp, float Rp, int sphericalPolar, float ss, float RR){
   float rShift = sqrt(RShift*RShift + sShift*sShift);
   float phiShift = acos(sShift/rShift);
 
-  float alpha = rr*rr*sin(phi) * alphaAnalytic(rShift, phiShift, sphericalPolar) * perturberExtended(rr, phi, sphericalPolar);
+  // float alpha = rr*rr*sin(phi) * alphaAnalytic(rShift, phiShift, sphericalPolar) * perturberExtended(rr, phi, sphericalPolar);
+  float alpha = rr*rr*sin(phi) * alphaAnalytic(rShift, phiShift, sphericalPolar) * perturberFlat(rr, phi, sphericalPolar);
 
   return alpha;
 
